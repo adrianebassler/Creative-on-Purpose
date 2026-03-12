@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ad Creative Decision Guide — Creative on Purpose</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #333333;
+    --coral: #e45e4c;
+    --coral-light: #f7cbcb;
+    --coral-bg: #fdf4f3;
+    --teal: #d2e5e7;
+    --teal-mid: #b5d4d8;
+    --teal-dark: #3a6e78;
+    --gold: #e8bb5c;
+    --offwhite: #fbf7f5;
+    --warm: #f5f0eb;
+    --white: #ffffff;
+    --mid: #888888;
+    --border: #e8e2dc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Jost", sans-serif;
+    background: var(--offwhite);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    padding: 60px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(228,94,76,0.1), transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-logo {
+    width: 56px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .hero-eyebrow {
+    font-family: "Jost", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--coral-light);
+  }
+
+  .hero p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(251,247,245,0.55);
+    max-width: 440px;
+    line-height: 1.75;
+  }
+
+  /* GUIDE WRAP */
+  .guide-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 52px 24px 100px;
+  }
+
+  /* PROGRESS */
+  .step-track {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+    gap: 0;
+  }
+
+  .step-dot {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mid);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    font-family: "Jost", sans-serif;
+  }
+
+  .step-dot.active {
+    background: var(--coral);
+    color: white;
+    box-shadow: 0 0 0 4px var(--coral-light);
+  }
+
+  .step-dot.done {
+    background: var(--ink);
+    color: white;
+  }
+
+  .step-line {
+    height: 1px;
+    width: 48px;
+    background: var(--border);
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .step-line.done { background: var(--ink); }
+
+  /* STEPS */
+  .step {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .step.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-label {
+    font-family: "Jost", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 16px;
+  }
+
+  .step h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 32px;
+  }
+
+  /* ASSETS */
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .asset-item {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .asset-item:hover {
+    border-color: var(--coral-light);
+  }
+
+  .asset-item.selected {
+    background: var(--coral-bg);
+    border-color: var(--coral);
+  }
+
+  .asset-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--coral);
+    flex-shrink: 0;
+  }
+
+  .asset-label {
+    flex: 1;
+  }
+
+  .asset-name {
+    font-family: "Jost", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+
+  .asset-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  /* RADIO */
+  .radio-grid {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .radio-item {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .radio-item:hover {
+    border-color: var(--coral-light);
+  }
+
+  .radio-item.selected {
+    background: var(--coral-bg);
+    border-color: var(--coral);
+  }
+
+  .radio-item input[type="radio"] {
+    display: none;
+  }
+
+  .radio-label {
+    font-family: "Jost", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .radio-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-top: 6px;
+  }
+
+  /* BUTTONS */
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    font-family: "Jost", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--coral);
+    color: white;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: #d24d3b;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:disabled {
+    background: var(--border);
+    color: var(--mid);
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    background: var(--warm);
+    color: var(--ink);
+  }
+
+  .btn-secondary:hover {
+    background: var(--border);
+  }
+
+  /* RESULTS */
+  .no-assets-note {
+    background: var(--gold);
+    color: #6a4e10;
+    padding: 16px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .no-assets-note strong {
+    font-weight: 600;
+  }
+
+  .result-hero {
+    background: var(--ink);
+    color: white;
+    padding: 40px 36px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+  }
+
+  .result-eyebrow {
+    font-family: "Jost", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--coral-light);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .result-hero h3 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    line-height: 1.12;
+    margin-bottom: 16px;
+  }
+
+  .result-hero p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 20px;
+  }
+
+  .library-ref {
+    font-family: "Jost", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  .supporting-section {
+    margin-bottom: 40px;
+  }
+
+  .supporting-label {
+    font-family: "Jost", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .supporting-ads {
+    display: grid;
+    gap: 16px;
+  }
+
+  .ad-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 26px;
+  }
+
+  .ad-num {
+    font-family: "Jost", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 10px;
+  }
+
+  .ad-card h4 {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .ad-card p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: #555;
+    margin-bottom: 14px;
+  }
+
+  .lib-badge {
+    font-family: "Jost", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--teal-dark);
+    background: var(--teal);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .asset-warning {
+    background: var(--coral-bg);
+    border-left: 4px solid var(--coral);
+    padding: 18px 22px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #7a2010;
+  }
+
+  .asset-warning strong {
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .asset-grid {
+      grid-template-columns: 1fr;
+    }
+    .btn-row {
+      flex-direction: column;
+    }
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Creative on Purpose</div>
+    <h1>Stop guessing what ad to run <em>next</em></h1>
+    <p>Three questions. One clear starting point. Three supporting ads that actually work together.</p>
+  </div>
+</div>
+
+<!-- GUIDE -->
+<div class="guide-wrap">
+  <!-- PROGRESS -->
+  <div class="step-track">
+    <div class="step-dot active" id="dot1">1</div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-dot" id="dot2">2</div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-dot" id="dot3">3</div>
+    <div class="step-line" id="line3"></div>
+    <div class="step-dot" id="dot4">✓</div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step active" id="step1">
+    <div class="step-label">STEP 1 · WHAT YOU HAVE</div>
+    <h2>What proof or content can you use right now?</h2>
+    <div class="asset-grid">
+      <div class="asset-item" onclick="toggleAsset('testimonials')">
+        <input type="checkbox" id="testimonials">
+        <div class="asset-label">
+          <div class="asset-name">Customer proof</div>
+          <div class="asset-desc">Reviews, testimonials, case studies, client results. Real words from real customers. A quote, a video, a DM screenshot, anything showing it worked for someone else.</div>
+        </div>
+      </div>
+      <div class="asset-item" onclick="toggleAsset('founder')">
+        <input type="checkbox" id="founder">
+        <div class="asset-label">
+          <div class="asset-name">Founder story</div>
+          <div class="asset-desc">Your origin story or why you built this. The moment you realized the problem, what you tried, what you figured out. Can be written or on camera.</div>
+        </div>
+      </div>
+      <div class="asset-item" onclick="toggleAsset('before_after')">
+        <input type="checkbox" id="before_after">
+        <div class="asset-label">
+          <div class="asset-name">Before and after visuals</div>
+          <div class="asset-desc">Transformation photos, progress shots, side-by-sides. Can be physical change, lifestyle change, business results, anything that shows the shift.</div>
+        </div>
+      </div>
+      <div class="asset-item" onclick="toggleAsset('ugc')">
+        <input type="checkbox" id="ugc">
+        <div class="asset-label">
+          <div class="asset-name">UGC video</div>
+          <div class="asset-desc">Customer filmed this on their phone. Raw, real footage of them talking about their experience or showing the product in action. Doesn't need to be perfect.</div>
+        </div>
+      </div>
+      <div class="asset-item" onclick="toggleAsset('organic_content')">
+        <input type="checkbox" id="organic_content">
+        <div class="asset-label">
+          <div class="asset-name">Organic content that's working</div>
+          <div class="asset-desc">Posts or Reels getting strong saves, shares, or comments. Anything your audience is already stopping for and engaging with without you spending money on it.</div>
+        </div>
+      </div>
+      <div class="asset-item" onclick="toggleAsset('media_mentions')">
+        <input type="checkbox" id="media_mentions">
+        <div class="asset-label">
+          <div class="asset-name">Press or media mentions</div>
+          <div class="asset-desc">Features, awards, podcast shoutouts, editor picks, best-of lists. Any third party mention that says someone outside your brand checked and agreed you're worth attention.</div>
+        </div>
+      </div>
+      <div class="asset-item" onclick="toggleAsset('offer')">
+        <input type="checkbox" id="offer">
+        <div class="asset-label">
+          <div class="asset-name">Active offer or promotion</div>
+          <div class="asset-desc">A discount, bonus, launch price, founding member deal, first visit incentive, anything with a deadline or reason to act now instead of later.</div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="nextStep(2)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step" id="step2">
+    <div class="step-label">STEP 2 · BUSINESS TYPE</div>
+    <h2>What are you selling?</h2>
+    <div class="radio-grid">
+      <div class="radio-item" onclick="selectRadio('biz', 'service')">
+        <input type="radio" name="biz" id="biz-service">
+        <div class="radio-label">Service</div>
+        <div class="radio-desc">You work with clients one-on-one or in groups. Coaching, consulting, design, photography, anything where you're selling your expertise, your time, or a done-for-you service.</div>
+      </div>
+      <div class="radio-item" onclick="selectRadio('biz', 'digital')">
+        <input type="radio" name="biz" id="biz-digital">
+        <div class="radio-label">Digital product</div>
+        <div class="radio-desc">Courses, templates, memberships, ebooks, digital downloads. Anything someone buys once and accesses on their own without needing you live on the other end.</div>
+      </div>
+      <div class="radio-item" onclick="selectRadio('biz', 'local')">
+        <input type="radio" name="biz" id="biz-local">
+        <div class="radio-label">Local business</div>
+        <div class="radio-desc">Brick and mortar, service area business, anything where people need to show up to a physical location or you come to them. Restaurants, salons, gyms, home services, local retail.</div>
+      </div>
+      <div class="radio-item" onclick="selectRadio('biz', 'ecomm')">
+        <input type="radio" name="biz" id="biz-ecomm">
+        <div class="radio-label">Ecommerce</div>
+        <div class="radio-desc">Physical products you ship. Skincare, apparel, home goods, supplements, anything tangible that shows up in a box at someone's door.</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="prevStep(1)">Back</button>
+      <button class="btn btn-primary" id="btn-step2" disabled onclick="nextStep(3)">Next</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step" id="step3">
+    <div class="step-label">STEP 3 · WHERE'S THE BREAKDOWN?</div>
+    <h2>Where are you stuck right now?</h2>
+    <div class="radio-grid">
+      <div class="radio-item" onclick="selectRadio('stuck', 'launch')">
+        <input type="radio" name="stuck" id="stuck-launch">
+        <div class="radio-label">Haven't launched ads yet</div>
+        <div class="radio-desc">You're building from scratch or getting ready to run your first round of ads. You need to know what to create first and what to layer in next.</div>
+      </div>
+      <div class="radio-item" onclick="selectRadio('stuck', 'traffic')">
+        <input type="radio" name="stuck" id="stuck-traffic">
+        <div class="radio-label">Ads are running but no one's stopping</div>
+        <div class="radio-desc">You're spending money but your ads aren't getting attention. People are scrolling past. Low engagement, low clicks, not much happening at all.</div>
+      </div>
+      <div class="radio-item" onclick="selectRadio('stuck', 'sales')">
+        <input type="radio" name="stuck" id="stuck-sales">
+        <div class="radio-label">Getting attention but not getting sales</div>
+        <div class="radio-desc">People are seeing your ads, maybe even clicking, but they're not buying. Something is breaking their confidence before they commit.</div>
+      </div>
+      <div class="radio-item" onclick="selectRadio('stuck', 'stale')">
+        <input type="radio" name="stuck" id="stuck-stale">
+        <div class="radio-label">It worked before and now it doesn't</div>
+        <div class="radio-desc">Your ads were performing and now they're not. Results dropped off. Your warm audience has seen everything and stopped responding.</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="prevStep(2)">Back</button>
+      <button class="btn btn-primary" id="btn-step3" disabled onclick="showResults()">Get Recommendation</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 RESULTS -->
+  <div class="step" id="step4">
+    <div class="step-label">YOUR RECOMMENDATION</div>
+    <div id="result-content"></div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="restart()">Start Over</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const state = {
+    assets: [],
+    biz: null,
+    stuck: null
+  };
+
+  function toggleAsset(id) {
+    const el = document.getElementById(id);
+    const parent = el.closest('.asset-item');
+    el.checked = !el.checked;
+    parent.classList.toggle('selected', el.checked);
+    if (el.checked) {
+      if (!state.assets.includes(id)) state.assets.push(id);
+    } else {
+      state.assets = state.assets.filter(a => a !== id);
+    }
+  }
+
+  function selectRadio(group, val) {
+    document.querySelectorAll(`input[name="${group}"]`).forEach(r => {
+      r.checked = false;
+      r.closest('.radio-item').classList.remove('selected');
+    });
+    const el = document.getElementById(`${group}-${val}`);
+    el.checked = true;
+    el.closest('.radio-item').classList.add('selected');
+    state[group] = val;
+    document.getElementById(`btn-step${group === 'biz' ? '2' : '3'}`).disabled = false;
+  }
+
+  function goToStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(`step${n}`).classList.add('active');
+    for (let i = 1; i <= 4; i++) {
+      const dot = document.getElementById(`dot${i}`);
+      dot.classList.remove('active', 'done');
+      if (i < n) dot.classList.add('done');
+      else if (i === n) dot.classList.add('active');
+      if (i < 4) {
+        const line = document.getElementById(`line${i}`);
+        line.classList.toggle('done', i < n);
+      }
+    }
+  }
+
+  function nextStep(n) { goToStep(n); }
+  function prevStep(n) { goToStep(n); }
+
+  function has(key) { return state.assets.includes(key); }
+  function hasProof() { return has('testimonials') || has('reviews') || has('case_studies') || has('ugc'); }
+  function isService() { return state.biz === 'service'; }
+  function isDigital() { return state.biz === 'digital'; }
+  function isLocal() { return state.biz === 'local'; }
+  function isEcomm() { return state.biz === 'ecomm'; }
+  function localWarning() {
+    if (!has('offer')) return "A first visit offer accelerates results for local businesses. Consider creating one.";
+    return null;
+  }
+
+  function getRecommendation() {
+    // LAUNCH
+    if (state.stuck === 'launch') {
+      if (isService()) {
+        return {
+          start: {
+            name: has('founder') ? "The Founder Story Ad" : "The Question Hook Ad",
+            page: has('founder') ? "Ad Type 03" : "Ad Type 01",
+            why: has('founder')
+              ? "When you're building from zero, trust comes first. Your founder story connects you to your audience before you have client results to lean on. Face, voice, real setting. That's all it takes. It shows the real person behind the brand and makes people feel like they know you before they ever work with you."
+              : "Cold traffic doesn't know you exist yet. Your first job is stopping the exact right person and making them feel like you wrote this ad for them. A question hook does that without needing customer proof you don't have yet. It works by opening with a pain point or frustration your ideal client is already living with."
+          },
+          supporting: [
+            { name: "The Problem Callout Ad", page: "Ad Type 02", why: "Your starting ad gets attention. This one deepens it by naming the pain your audience is feeling so specifically they feel understood. It turns cold interest into a warm audience fast when someone feels truly seen. Run this alongside your first ad with a different angle on the same problem." },
+            { name: "The Bold Claim Ad", page: "Ad Type 04", why: "This works alongside your starting ad with completely different energy. A confident, specific statement signals you know what you're talking about. It stops people who need someone to be direct with them. Soft ads don't move cold audiences. This one doesn't apologize." },
+            { name: has('founder') ? "The Question Hook Ad" : "The Founder Story Ad", page: has('founder') ? "Ad Type 01" : "Ad Type 03", why: has('founder') ? "Layer in a hook that speaks directly to the pain your audience is living with. Different angle, same cold audience. Meta uses this to find different people within the same pool who respond to different messaging." : "When you're ready, getting on camera is one of the most powerful moves for a service business starting from zero. Your phone is all you need. It doesn't need to be polished. Real beats perfect every time." }
+          ],
+          warning: null
+        };
+      }
+
+      if (isDigital()) {
+        return {
+          start: {
+            name: has('ugc') ? "The Problem Callout Ad" : "The Question Hook Ad",
+            page: has('ugc') ? "Ad Type 02" : "Ad Type 01",
+            why: has('ugc')
+              ? "People scroll past generic education content every day. The fastest way to stop cold traffic is leading with the exact problem they're living with right now. Make it specific enough that they feel like you pulled it from their brain. It works because it names what they're already feeling instead of trying to convince them they have a problem."
+              : "Cold traffic doesn't know you exist yet. Your first job is stopping the exact right person. Lead with the pain they're already feeling and make them think you wrote this for them. A question hook or a statement that hits on a frustration stops people faster than trying to explain what you offer."
+          },
+          supporting: [
+            { name: "The Problem Callout Ad", page: "Ad Type 02", why: "Your starting ad stopped the scroll. This one makes the case by naming the pain so specifically they feel seen. This builds your warm pool fast without needing customer proof you don't have yet. Different angle, same audience, more people reached." },
+            { name: "The Bold Claim Ad", page: "Ad Type 04", why: "A confident, specific statement signals you know what you're talking about. It works alongside your other ads with completely different energy. A pattern interrupt for cold audiences. If nobody would argue with your claim, it's not bold enough." },
+            { name: "The Listicle Ad", page: "Ad Type 05", why: "This looks like content, not an ad. People save and share these. That's free reach. Use it to educate cold traffic and build the warm audience your proof ads will convert later. Three or five reasons works better than one long explanation." }
+          ],
+          warning: null
+        };
+      }
+
+      if (isLocal()) {
+        return {
+          start: {
+            name: "The Question Hook Ad",
+            page: "Ad Type 01",
+            why: "Cold local traffic doesn't know you exist yet. Lead with a pain point specific to your area and your customer. The more local it feels, the harder it works. Think about what makes someone in your market feel like this ad was written for them specifically, not just anyone anywhere."
+          },
+          supporting: [
+            { name: "The Bold Claim Ad", page: "Ad Type 04", why: "What makes you different in this market? Say it confidently and specifically. A bold claim alongside your hook gives Meta two different signals to work with. Some people respond to pain points. Others respond to confident claims. You need both." },
+            { name: has('offer') ? "The Offer Ad" : "The Bold Claim Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 04", why: has('offer') ? "A first visit offer is one of the fastest ways to get a local audience through the door. Give them a clear reason to show up now. Make it specific and timely, not just a generic discount but a reason that makes sense right now." : "A first visit offer accelerates results for local businesses starting fresh. Consider creating one before you launch. It gives people a concrete, low-risk reason to try you when they don't know you yet." },
+            { name: has('media_mentions') ? "The Media and Press Ad" : "The Testimonial Ad", page: has('media_mentions') ? "Ad Type 06" : "Ad Type 08", why: has('media_mentions') ? "A local feature or mention signals that someone outside your brand checked and agreed. Third party validation works especially well in local markets. Lead with the source and let someone else make the case for you." : "Real words from local customers build the trust that gets people through the door. Start collecting reviews on Google and Facebook now. Even one strong review is better than none." }
+          ],
+          warning: localWarning()
+        };
+      }
+
+      // Ecomm launch
+      return {
+        start: {
+          name: has('ugc') ? "The Problem Callout Ad" : "The Question Hook Ad",
+          page: has('ugc') ? "Ad Type 02" : "Ad Type 01",
+          why: has('ugc')
+            ? "People scroll past generic product ads every day. The fastest way to stop cold traffic for a physical product is leading with the exact problem they're living with right now. Make it specific enough that they feel like you pulled it from their brain. Problem first, product second."
+            : "Cold traffic doesn't know you exist yet. Your first job is stopping the exact right person. Lead with the pain or frustration they're already feeling and make them think you wrote this for them. Works better than showing the product and hoping someone wants it."
+        },
+        supporting: [
+          { name: "The Problem Callout Ad", page: "Ad Type 02", why: "Your starting ad stopped the scroll. This one makes the case by naming the pain so specifically they feel seen. This builds your warm pool fast without needing customer proof you don't have yet. Run this alongside your first ad to reach different people." },
+          { name: "The Bold Claim Ad", page: "Ad Type 04", why: "A confident, specific statement signals you know what you're talking about. Works alongside your other ads with completely different energy. A pattern interrupt for cold audiences. Some people need to feel understood. Others need you to be direct." },
+          { name: "The Listicle Ad", page: "Ad Type 05", why: "This looks like content, not an ad. People save and share these. That's free reach. Use it to educate cold traffic and build the warm audience your conversion ads will close later. Five reasons your product works beats one vague claim." }
+        ],
+        warning: null
+      };
+    }
+
+    // TRAFFIC - continuing with same fuller explanations for all scenarios...
+    // (I'll continue this pattern for all remaining scenarios)
+
+    if (state.stuck === 'traffic') {
+      if (isService()) {
+        return {
+          start: {
+            name: "The Problem Callout Ad",
+            page: "Ad Type 02",
+            why: "People are scrolling past your ads. Your creative isn't stopping anyone. The fix is sharper, more specific messaging. Lead with the exact situation your ideal client is living right now and make them feel like you pulled it from their brain. Generic pain points don't work. Specific ones do."
+          },
+          supporting: [
+            { name: "The Question Hook Ad", page: "Ad Type 01", why: "A different angle on the same problem. This works alongside your starting ad. Same cold audience, different hook, different people stopping. Some people respond to questions. Others respond to statements. You need both working together." },
+            { name: has('founder') ? "The Founder Story Ad" : "The Bold Claim Ad", page: has('founder') ? "Ad Type 03" : "Ad Type 04", why: has('founder') ? "Putting a real face in the feed is one of the most powerful scroll stoppers for a service business. Face, voice, real setting. This feels completely different from every other ad in the feed. It works because it's personal and everything else is polished and corporate." : "A confident, specific statement creates the pattern interrupt your current ads are missing. If nobody would argue with your claim, it's not bold enough. Bold doesn't mean loud. It means specific and confident enough to make someone stop." },
+            { name: "The Bold Claim Ad", page: "Ad Type 04", why: "This ad works with completely different energy. A confident, specific take signals you know what you're doing. Rotate this in alongside your other creative. Different energy, different people reached, same warm pool growing faster." }
+          ],
+          warning: null
+        };
+      }
+
+      if (isDigital()) {
+        return {
+          start: {
+            name: "The Problem Callout Ad",
+            page: "Ad Type 02",
+            why: "People are seeing your ads and scrolling past. Your hook isn't stopping anyone. Lead with the exact person and the exact problem. Specific beats general every time. Name the frustration or behavior they're living with right now. Make it so specific they think you're talking directly to them."
+          },
+          supporting: [
+            { name: "The Bold Claim Ad", page: "Ad Type 04", why: "A pattern interrupt. A confident, specific result or differentiator makes someone stop and think wait, really? Works alongside your hook with completely different energy. Some people need to feel understood. Others need you to make a bold claim they can't ignore." },
+            { name: "The Listicle Ad", page: "Ad Type 05", why: "This looks like content, not an ad. That's why people stop for it. Three or five specific reasons works better than one vague claim every time. Use this to educate and build your warm pool. People save these and come back later." },
+            { name: "The Problem Callout Ad", page: "Ad Type 02", why: "Name the frustration they're living with right now so specifically they feel seen. Different angle, same cold audience. This gives Meta more signal to find different people. One problem called out five different ways reaches five different segments." }
+          ],
+          warning: null
+        };
+      }
+
+      if (isLocal()) {
+        return {
+          start: {
+            name: "The Question Hook Ad",
+            page: "Ad Type 01",
+            why: "People are seeing your ads and scrolling past. The fix is a hook that's hyper local and hyper specific. Something that makes someone in your area feel like this ad was made for them. Not just anyone. Them. The more local the pain point, the harder it works."
+          },
+          supporting: [
+            { name: "The Bold Claim Ad", page: "Ad Type 04", why: "What makes you the obvious choice in this market? Say it confidently. A bold claim works alongside your hook with completely different energy. Some people respond to pain. Others respond to confidence. You need both." },
+            { name: has('media_mentions') ? "The Media and Press Ad" : "The Testimonial Ad", page: has('media_mentions') ? "Ad Type 06" : "Ad Type 08", why: has('media_mentions') ? "A local feature or award signals that someone outside your brand checked and agreed. Third party validation stops cold local scrolls. It answers the question: why should I trust you over the five other options in my area?" : "Real words from real local customers do the work you can't do yourself. Start collecting reviews and put them in your creative. One strong local review is worth more than ten bullet points about why you're great." },
+            { name: has('offer') ? "The Offer Ad" : "The Bold Claim Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 04", why: has('offer') ? "A specific local offer gives someone a concrete reason to act. Sometimes a clear deal does what messaging alone can't. Make it timely and specific. First visit deals work well for local." : "Consider creating an offer. A first visit incentive, a seasonal deal, anything with a clear reason to act now. It gives people a low-risk way to try you when they don't know you yet." }
+          ],
+          warning: localWarning()
+        };
+      }
+
+      // Ecomm traffic
+      return {
+        start: {
+          name: "The Problem Callout Ad",
+          page: "Ad Type 02",
+          why: "People are seeing your ads and scrolling past. Your creative isn't stopping anyone. Lead with the pain or problem they're already feeling. Specific and immediate beats broad and vague every time. Show you understand what they're dealing with before you show them the product."
+        },
+        supporting: [
+          { name: "The Bold Claim Ad", page: "Ad Type 04", why: "A pattern interrupt. A confident, specific statement makes someone stop mid-scroll and think wait, really? Works alongside your hook with completely different energy. Different claims reach different people. You need variety." },
+          { name: "The Problem Callout Ad", page: "Ad Type 02", why: "Go deeper on the pain. Name it so specifically they feel seen. Different angle, same audience. This gives Meta more signal to find different people. One pain point framed five different ways reaches five different segments of the same market." },
+          { name: "The Listicle Ad", page: "Ad Type 05", why: "This looks like content, not an ad. People save and share these. That's free reach. A well written listicle can stop people your other ads are missing. Five reasons this solves their problem works better than one explanation." }
+        ],
+        warning: null
+      };
+    }
+
+    // SALES
+    if (state.stuck === 'sales') {
+      if (isService()) {
+        return {
+          start: {
+            name: "The Testimonial Ad",
+            page: "Ad Type 08",
+            why: hasProof()
+              ? "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real results from real customers answer the question they're asking: did this work for someone like me? This is the ad that shows them it's real, not just you saying it's real."
+              : "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real results from real customers answer the question they're asking: did this work for someone like me? If you can get even one client quote, video, or result, this becomes your most important ad."
+          },
+          supporting: [
+            { name: "The Process Ad", page: "Ad Type 07", why: "People are interested but they can't picture what actually happens when they work with you. The unknown stops more sales than price ever does. This ad removes that fear before it becomes a reason not to buy. Walk them through what happens step by step so there's no mystery left." },
+            { name: hasProof() ? "The Founder Story Ad" : "The Testimonial Ad", page: hasProof() ? "Ad Type 03" : "Ad Type 08", why: hasProof() ? "Trust is built in layers. Your testimonial handles the results question. Your founder story handles the trust question. The real person behind the brand makes people feel safe committing. Some people need proof. Others need to know who you are first." : "If you can get even one client result, a quote, a short video, a DM screenshot, this becomes your most important ad. Reach out to past clients and ask. One good testimonial can change everything. It does the work you can't do yourself." },
+            { name: has('offer') ? "The Offer Ad" : "The Comparison Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 11", why: has('offer') ? "They believe it works. Now give them a real reason to act today instead of putting it off. A clear, specific offer makes the decision easy. Later is where purchases go to die. Give them a reason to move now." : "Your warm audience is weighing their options. You versus a competitor or you versus figuring it out themselves. Make the choice obvious before they make it without you. Show them why you're the better path forward." }
+          ],
+          warning: !hasProof() ? "Getting even one client result, quote, or video before running conversion ads will significantly improve your results. Reach out to past clients and ask. Most people are happy to help if you make it easy for them." : null
+        };
+      }
+
+      if (isDigital()) {
+        return {
+          start: {
+            name: "The Testimonial Ad",
+            page: "Ad Type 08",
+            why: hasProof()
+              ? "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real results from real students answer the question they're asking: did this work for someone like me? Student proof is the fastest way to turn warm interest into a sale for digital products."
+              : "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real results from real students answer the question they're asking: did this work for someone like me? If you can get even one student result, this becomes your strongest conversion ad."
+          },
+          supporting: [
+            { name: "The Before and After Ad", page: "Ad Type 09", why: "Trust is built in layers. Different students need different kinds of proof. A transformation story, even a simple one, answers the question stopping them: is this actually possible for someone like me? Show them the shift, not just the outcome." },
+            { name: "The Process Ad", page: "Ad Type 07", why: "What's inside? What happens when they buy? What does the experience look like? For a digital product, people need to understand what they're getting before they'll commit. This ad removes that uncertainty. Walk them through it so there's no mystery." },
+            { name: has('offer') ? "The Offer Ad" : "The Comparison Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 11", why: has('offer') ? "They believe it works. Now give them a reason to act today. A founding member price, a bonus, a deadline. Something that makes now the right moment. Create urgency without being pushy." : "Your audience is weighing their options. Your course versus a competitor, or your course versus figuring it out on their own. Make the choice obvious before they make it without you. Show them why your path is faster and clearer." }
+          ],
+          warning: !hasProof() ? "Getting even one student result before running conversion ads will significantly improve your results. Reach out to recent students and ask. Even a short quote or screenshot makes a difference." : null
+        };
+      }
+
+      if (isLocal()) {
+        return {
+          start: {
+            name: "The Testimonial Ad",
+            page: "Ad Type 08",
+            why: hasProof()
+              ? "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real words from real local customers answer the question they're asking: did this work for someone like me? Local proof from people in your area works harder than anything else."
+              : "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real words from real local customers answer the question they're asking: did this work for someone like me? Start collecting Google and Facebook reviews now. Even one is better than none."
+          },
+          supporting: [
+            { name: has('offer') ? "The Offer Ad" : "The Testimonial Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 08", why: has('offer') ? "A specific promotion gives your warm local audience a concrete reason to act now. Make it timely and specific. Not a generic discount but a real reason tied to right now." : "Real words from local customers build the trust that gets people through the door. Start collecting Google and Facebook reviews now. Make it easy for happy customers to leave them." },
+            { name: "The Process Ad", page: "Ad Type 07", why: "What happens when they walk in? What should they expect? For a local business, a lot of people don't show up simply because the experience feels unknown. This ad removes that friction. Walk them through what happens so there's no mystery." },
+            { name: has('media_mentions') ? "The Media and Press Ad" : "The Bold Claim Ad", page: has('media_mentions') ? "Ad Type 06" : "Ad Type 04", why: has('media_mentions') ? "A local feature or award is powerful third party validation that makes fence sitters move. Lead with the source and let someone else make the case for you. Third party proof removes the last bit of doubt." : "A confident, specific statement about what makes you worth the trip. What can you offer that nobody else in your market can? Say it directly and confidently." }
+          ],
+          warning: !hasProof() ? "Getting customer reviews before running conversion ads will significantly improve your results. Start collecting Google and Facebook reviews now. Make it part of your checkout or follow-up process." : null
+        };
+      }
+
+      // Ecomm sales
+      return {
+        start: {
+          name: "The Testimonial Ad",
+          page: "Ad Type 08",
+          why: hasProof()
+            ? "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real results from real customers answer the question they're asking: did this work for someone like me? Customer proof removes doubt faster than anything you could say about your own product."
+            : "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real results from real customers answer the question they're asking: did this work for someone like me? Getting even one strong review changes everything. Reach out to recent buyers and ask."
+        },
+        supporting: [
+          { name: has('before_after') ? "The Before and After Ad" : "The Features and Benefits Ad", page: has('before_after') ? "Ad Type 09" : "Ad Type 10", why: "Trust is built in layers. Different buyers need different kinds of proof. Some people need to see the transformation. Others need to know exactly what they're getting. Run both to cover different buyer types." },
+          { name: "The Features and Benefits Ad", page: "Ad Type 10", why: "Spell out exactly what they get and connect every feature to a real benefit. Don't make them connect the dots themselves. This ad does that work for them. Feature is the what. Benefit is the so what. Always pair them." },
+          { name: has('offer') ? "The Offer Ad" : "The Comparison Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 11", why: has('offer') ? "They believe it works. Now give them a real reason to act today. A clear, specific offer removes the friction of deciding. Make it timely and specific, not a generic discount but a reason to move now." : "Your audience is comparing options. You versus a competitor or you versus doing nothing. Make the choice obvious before they make it without you. Show them why your option is better, faster, or easier." }
+        ],
+        warning: !hasProof() ? "Getting even one strong review or customer result before running conversion ads will significantly improve your results. Reach out to recent buyers and ask. Make it easy for them to say yes." : null
+      };
+    }
+
+    // STALE
+    if (isService()) {
+      return {
+        start: {
+          name: has('founder') ? "The Founder Story Ad" : (has('organic_content') ? "The Testimonial Ad" : "The Bold Claim Ad"),
+          page: has('founder') ? "Ad Type 03" : (has('organic_content') ? "Ad Type 08" : "Ad Type 04"),
+          why: has('founder')
+            ? "When ads go stale, the fastest reset is showing up differently. A founder story gives your warm audience something they haven't seen from you. The real person behind the brand. That shift in energy alone can restart momentum. Your warm audience has seen your polished ads. Show them you."
+            : has('organic_content')
+              ? "Your top performing organic content already proved it can stop people. Put spend behind what's already working instead of creating something new from scratch. If it works organically, it will work as a paid ad. Don't reinvent the wheel."
+              : "Something in your creative system has gone flat. A bold, specific claim forces your audience to pay attention again. A pattern interrupt that works even on people who've seen your ads before. Fresh angle, same audience, new energy."
+        },
+        supporting: [
+          { name: has('testimonials') || has('reviews') || has('case_studies') ? "The Testimonial Ad" : "The Before and After Ad", page: has('testimonials') || has('reviews') || has('case_studies') ? "Ad Type 08" : "Ad Type 09", why: "Fresh customer proof resets the conversation. New client results, new stories, new reviews. This shows your warm audience that things have only gotten better. It's the creative that reminds them why they were interested in the first place. New proof, same offer, different result." },
+          { name: "The Process Ad", page: "Ad Type 07", why: "If you've evolved how you work, updated your offer, or added something new, this is the ad that shows it. A fresh angle on your process can make your warm audience feel like they're hearing from you for the first time. Show them what's different now." },
+          { name: has('offer') ? "The Offer Ad" : "The Comparison Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 11", why: has('offer') ? "A fresh offer gives your warm audience a new reason to care. Even a simple promotion or bonus can restart urgency fast. Make it timely and specific to right now, not just a generic discount." : "Your warm audience is weighing their options. This ad makes the choice obvious. You versus the alternative, laid out clearly. Make the decision easy for them." }
+        ],
+        warning: !has('organic_content') ? "Check your organic posts and Reels. If anything is getting strong views, saves, or shares, consider putting spend behind it. What works organically is often your fastest reset when paid ads go stale." : null
+      };
+    }
+
+    if (isDigital()) {
+      return {
+        start: {
+          name: has('organic_content') ? "The Testimonial Ad" : (hasProof() ? "The Testimonial Ad" : "The Bold Claim Ad"),
+          page: has('organic_content') || hasProof() ? "Ad Type 08" : "Ad Type 04",
+          why: has('organic_content')
+            ? "Your top performing organic content already proved it can stop people. Put spend behind what's already working. This is your fastest reset. If it stopped people organically, it will stop them as a paid ad. Use what's already working."
+            : hasProof()
+              ? "Fresh student proof resets the conversation. New results, new voices, new stories. Your warm audience needs to see that things have only gotten better. Show them recent wins. New proof breathes new life into stale campaigns."
+              : "Something in your creative has gone flat. A bold, specific claim with a fresh angle forces your warm audience to pay attention again. New energy, new hook, same audience. Sometimes a pattern interrupt is all it takes."
+        },
+        supporting: [
+          { name: "The Before and After Ad", page: "Ad Type 09", why: "A fresh student transformation story reminds your warm audience what they're actually buying. Not a course, but the version of themselves that has the result. Show them the shift, not just the outcome. Make it real and relatable." },
+          { name: "The Bold Claim Ad", page: "Ad Type 04", why: "Lead with your most confident, specific result. A completely fresh angle on your most powerful outcome can make your warm audience feel like they're hearing from you for the first time. Different claim, different energy, same audience reached differently." },
+          { name: has('offer') ? "The Offer Ad" : "The Comparison Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 11", why: has('offer') ? "A fresh promotion or bonus gives your warm audience a new reason to act now instead of waiting. Make the offer feel timely and specific. Not a generic discount but a real reason tied to right now." : "Your warm audience is comparing options. This ad makes the choice obvious before they make it without you. Show them why your path is clearer, faster, or easier than the alternative." }
+        ],
+        warning: !has('organic_content') ? "Check your organic content. If any posts or Reels are getting strong engagement, consider putting spend behind them. What stops people organically is often your fastest creative reset." : null
+      };
+    }
+
+    if (isLocal()) {
+      return {
+        start: {
+          name: has('offer') ? "The Offer Ad" : (has('organic_content') ? "The Testimonial Ad" : "The Bold Claim Ad"),
+          page: has('offer') ? "Ad Type 12" : (has('organic_content') ? "Ad Type 08" : "Ad Type 04"),
+          why: has('offer')
+            ? "When local ads lose momentum, a fresh promotion is your fastest reset. Give your audience a new reason to show up. Something timely and specific to right now. A seasonal deal, a limited time offer, anything that creates urgency without feeling pushy."
+            : has('organic_content')
+              ? "Your top performing organic content already proved it can stop people locally. Put spend behind what's already working. If it resonated organically, it will work as a paid ad. Don't start from scratch."
+              : "Something in your creative has gone flat. A bold, specific statement about what makes you worth the trip gives your local audience a fresh reason to pay attention. New claim, new energy, same local market reached differently."
+        },
+        supporting: [
+          { name: has('testimonials') || has('reviews') ? "The Testimonial Ad" : "The Bold Claim Ad", page: has('testimonials') || has('reviews') ? "Ad Type 08" : "Ad Type 04", why: has('testimonials') || has('reviews') ? "Fresh local reviews and customer words reset trust with your warm audience. New proof shows that things have only gotten better since they last looked. Recent reviews remind people you're still delivering." : "A fresh, confident claim gives your local audience a new reason to pay attention. Make it specific to your market. What makes you the obvious choice right now in this area?" },
+          { name: has('media_mentions') ? "The Media and Press Ad" : "The Process Ad", page: has('media_mentions') ? "Ad Type 06" : "Ad Type 07", why: has('media_mentions') ? "Any new local feature, award, or recognition is worth leading with. Third party validation resets credibility fast. Let someone else make the case for you. It works harder than anything you could say about yourself." : "Has anything changed about the experience? New services, new team, new setup? Show your local audience what's different now. Fresh angles on your process give people a new reason to reconsider you." },
+          { name: "The Bold Claim Ad", page: "Ad Type 04", why: "A completely fresh angle on what makes you the obvious choice in your market. New energy, new hook, same audience. Sometimes that's all it takes to restart momentum with people who've seen everything else." }
+        ],
+        warning: localWarning()
+      };
+    }
+
+    // Ecomm stale
+    return {
+      start: {
+        name: has('ugc') ? "The Testimonial Ad" : (has('organic_content') ? "The Testimonial Ad" : "The Bold Claim Ad"),
+        page: has('ugc') || has('organic_content') ? "Ad Type 08" : "Ad Type 04",
+        why: has('ugc')
+          ? "People are seeing your ads but not clicking. Something is breaking their confidence before they commit. Real results from real customers answer the question they're asking: did this work for someone like me? UGC is one powerful way to do this, but any strong customer proof works. Fresh proof resets stale campaigns fast."
+          : has('organic_content')
+            ? "Your top performing organic content already proved it stops people. Put spend behind what's already working instead of creating something new from scratch. If it worked organically, it will work as a paid ad. Start there."
+            : "Something in your creative system has gone flat. A bold, specific claim with a fresh angle forces your audience to pay attention again, even people who've seen your ads before. New claim, new energy, same warm audience reached differently."
+      },
+      supporting: [
+        { name: has('before_after') ? "The Before and After Ad" : "The Features and Benefits Ad", page: has('before_after') ? "Ad Type 09" : "Ad Type 10", why: "Fresh customer proof in a new format resets the conversation. Show the transformation or spell out what they get with completely new creative. Same message, different execution. Different formats reach different people." },
+        { name: "The Bold Claim Ad", page: "Ad Type 04", why: "A fresh, confident claim with a completely different angle. New energy, new hook, same warm audience. Sometimes a pattern interrupt is all it takes to restart momentum. Make it bold enough to stop people who've seen everything else." },
+        { name: has('offer') ? "The Offer Ad" : "The Comparison Ad", page: has('offer') ? "Ad Type 12" : "Ad Type 11", why: has('offer') ? "A fresh promotion gives your warm audience a new reason to act. Make it specific and timely. Not a generic discount, but a real reason to buy now. Create urgency without being pushy." : "Your warm audience is comparing options. Make the choice obvious. You versus the alternative, before they make it without you. Show them why your product is the better path forward." }
+      ],
+      warning: !has('ugc') ? "For a physical product whose ads have gone stale, fresh customer video is one of the most powerful resets available. Reach out to recent buyers and ask for a short phone video about their experience. Make it easy for them to say yes." : null
+    };
+  }
+
+  function showResults() {
+    const recs = getRecommendation();
+    const noAssets = state.assets.length === 0;
+    let html = "";
+
+    if (noAssets) {
+      html += `<div class="no-assets-note"><strong>Note:</strong> You didn't select any assets, so these recommendations are built around what works when starting from scratch. Even one or two proof assets will significantly sharpen everything here.</div>`;
+    }
+
+    html += `
+      <div class="result-hero">
+        <span class="result-eyebrow">Start Here</span>
+        <h3>${recs.start.name}</h3>
+        <p>${recs.start.why}</p>
+        <span class="library-ref">Find it in your Ad Type Library · ${recs.start.page}</span>
+      </div>
+      <div class="supporting-section">
+        <p class="supporting-label">What to run next:</p>
+        <div class="supporting-ads">
+    `;
+
+    recs.supporting.forEach((ad, i) => {
+      html += `
+        <div class="ad-card">
+          <div class="ad-num">Next Ad ${i + 1}</div>
+          <h4>${ad.name}</h4>
+          <p>${ad.why}</p>
+          <span class="lib-badge">${ad.page}</span>
+        </div>
+      `;
+    });
+
+    html += "</div></div>";
+
+    if (recs.warning) {
+      html += `<div class="asset-warning"><strong>Worth knowing:</strong> ${recs.warning}</div>`;
+    }
+
+    document.getElementById("result-content").innerHTML = html;
+    goToStep(4);
+  }
+
+  function restart() {
+    state.assets = []; state.biz = null; state.stuck = null;
+    document.querySelectorAll('.asset-item').forEach(el => el.classList.remove('selected'));
+    document.querySelectorAll('.asset-item input').forEach(el => el.checked = false);
+    document.querySelectorAll('.radio-item').forEach(el => el.classList.remove('selected'));
+    document.getElementById('btn-step2').disabled = true;
+    document.getElementById('btn-step3').disabled = true;
+    goToStep(1);
+  }
+</script>
+</body>
+</html>
